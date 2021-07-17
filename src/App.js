@@ -1,6 +1,7 @@
 import './App.css';
 import React, { Component } from 'react'; //Импортируем компонент реакт
 import TopMenu from './components/topMenu';
+import Background from './components/background';
 
 class App extends Component {
 
@@ -8,7 +9,7 @@ class App extends Component {
 
     return (
         <div className="App">
-        <div className="gradient-background"></div>
+        <Background></Background>
           <header className="App-header">
             <TopMenu></TopMenu>
           </header>

@@ -1,0 +1,14 @@
+.container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+
+.photo{
+  height: 333px;
+  background: transparent;
+  outline: 1px solid #c5c5c5;
+  flex: 0 0 33.333333%;
+}

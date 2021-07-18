@@ -1,6 +1,22 @@
 .top-menu{
-  height: 100px;
+  height: 60px;
   width: 100%;
   background: transparent;
   outline: 1px solid #c5c5c5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.item{
+  flex: 0 0 50%;
+  color:  #c5c5c5;
+  font-family: monospace;
+  font-size: x-large;
+  height: 100%;
+  outline: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }

@@ -1,12 +1,13 @@
 import './style.css';
 import { photo } from '../constants';
 import { Component } from 'react';
+import { Animated } from "react-animated-css";
 
 const Close = () => {
-    return <div className="close">
+    return  <div className="close">
                 <div className="x"></div>
                 <div className="y"></div>
-            </div>
+            </div>  
 }
 
 class PhotoBlock extends Component {

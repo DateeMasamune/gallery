@@ -9,6 +9,20 @@
 .photo{
   height: 333px;
   background: transparent;
-  outline: 1px solid #c5c5c5;
-  flex: 0 0 33.333333%;
+  /* outline: 1px solid #c5c5c5; */
+  flex: 0 0 32.333333%;
+  margin: 5px;
+  display: inline-block;
+  overflow: hidden; 
+}
+
+.photo img{
+  height: 100%;
+  width: auto;
+  cursor: pointer;
+  transition: 1s; 
+}
+
+.photo img:hover{
+  transform: scale(1.2);
 }

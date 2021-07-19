@@ -3,7 +3,6 @@ import React, { Component } from 'react'; //Импортируем компон�
 import TopMenu from './components/topMenu';
 import PhotoBlock from './components/photoblock';
 import Slider from './components/slider';
-import { photo } from './components/constants';
 
 class App extends Component {
 

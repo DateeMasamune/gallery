@@ -3,8 +3,11 @@ import { photo } from '../constants';
 import { Component } from 'react';
 import { Animated } from "react-animated-css";
 
-const Close = () => {
-    return  <div className="close">
+const Close = ({id, onClick}) => {
+    
+    return  <div className="close"
+            onClick = {onClick}
+            id = {id}>
                 <div className="x"></div>
                 <div className="y"></div>
             </div>  
@@ -22,6 +25,7 @@ class PhotoBlock extends Component {
 
         this.mouseOver = this.mouseOver.bind(this);
         this.mouseOut = this.mouseOut.bind(this);
+        this.deletePicture = this.deletePicture.bind(this);
     }
 
     mouseOver = (id) => {
@@ -29,6 +33,10 @@ class PhotoBlock extends Component {
     }
     mouseOut = () => {
         this.setState({hover: false});
+    }
+    deletePicture = (id) => {
+        const updatePictureList = this.state.photo.filter(item => item.id !== id);
+        this.setState({photo: updatePictureList});
     }
 
     render(){
@@ -48,7 +56,10 @@ class PhotoBlock extends Component {
                         >
                             {
                                 this.state.hover && this.state.id === item.id
-                                ? <Close></Close>
+                                ? <Close 
+                                id = {item.id} 
+                                onClick={()=>this.deletePicture(item.id)}
+                                ></Close>
                                 : null
                             }
                             <img src={ item.src } alt={ item.name }></img>

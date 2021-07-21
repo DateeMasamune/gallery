@@ -26,9 +26,9 @@ class Slider extends Component  {
     render(){
 
         const {slide, nexSlide, classNext} = this.state;
-        setTimeout(() => {
-            this.nextSlide();
-        }, 3000); 
+        // setTimeout(() => {
+        //     this.nextSlide();
+        // }, 3000); 
         return(
             <div className="slider">
                 <img

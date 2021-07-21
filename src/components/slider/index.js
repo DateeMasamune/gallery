@@ -14,7 +14,9 @@ class Slider extends Component  {
         const {slide} = this.state;
 
         return(
-            <div className="slider"></div>
+            <div className="slider">
+                <img src={slide[0].src}></img>
+            </div>
         )
     }
 }

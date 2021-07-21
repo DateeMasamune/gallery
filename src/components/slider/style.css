@@ -5,6 +5,7 @@
   position: relative;
   overflow: hidden;
   height: 400px;
+  box-shadow: 4px 4px 30px 1px rgb(34 60 80 / 48%)
 }
 
 .slider img{
@@ -13,4 +14,13 @@
   position: absolute;
   left: 0;
   top: -50%;
+  transition: all 0.2s;
+}
+
+.slider-img-prev {
+  transform: translateX(-100%);
+}
+
+.slider-img-next {
+  transform: translateX(100%);
 }

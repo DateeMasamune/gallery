@@ -14,13 +14,11 @@ class App extends Component {
 
     return (
         <div className="App">
-        <div className="maxwidth">
-          <header className="App-header">
-            <TopMenu></TopMenu>
-            <Slider></Slider>
-            <PhotoBlock></PhotoBlock>
-          </header>
-        </div>
+            <div className="maxwidth">
+                <TopMenu></TopMenu>
+                <Slider></Slider>
+                <PhotoBlock></PhotoBlock>
+            </div>
         </div>
       );
    }

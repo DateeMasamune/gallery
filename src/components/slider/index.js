@@ -2,42 +2,44 @@ import { Component } from 'react';
 import './style.css';
 import { photo } from '../constants';
 
+
+
 class Slider extends Component  {
 
     constructor(props){
         super(props)
         this.state = {
             slide: photo,
-            nexSlide: 0,
-            classNext: '',
+            currentSlide: 0,
+            slidePrev: "",
+            slideNext: "",
         }
         this.nextSlide = this.nextSlide.bind(this);
     }
 
     nextSlide = () => {
-        const next = 1;
-        const classAdd = 'slider-img-prev';
-        this.setState({
-            classNext: classAdd,
-        })
-        console.log(this.state)
+
+       let current = (this.state.currentSlide+1)%this.state.slide.length;
+       const prev = "slider-img-prev";
+       const next = "slider-img-next";
+       
+       this.setState({currentSlide: current})
+    }
+
+    componentDidMount = () =>{
+        console.log(2313)
+        let interval = setInterval(this.nextSlide, 3000);
     }
 
     render(){
-
-        const {slide, nexSlide, classNext} = this.state;
-        // setTimeout(() => {
-        //     this.nextSlide();
-        // }, 3000); 
+        
+        const {slide,nextSlide,currentSlide} = this.state;
+        
         return(
             <div className="slider">
-                <img
-                 className={classNext}
-                 src={slide[nexSlide].src}
-                 alt={slide[nexSlide].name}
-                 key={slide[nexSlide].id}>
-
-                 </img>
+              <img className="" src={slide[currentSlide].src}></img>
+              <img className="slider-img-next" src={slide[currentSlide].src}></img>
+              <img className="slider-img-prev" src={slide[currentSlide].src}></img>
             </div>
         )
     }

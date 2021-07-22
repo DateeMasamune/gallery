@@ -11,8 +11,9 @@ class Slider extends Component  {
         this.state = {
             slide: photo,
             currentSlide: 0,
-            slidePrev: "",
-            slideNext: "",
+            slidePrev: "slider-img-prev",
+            slideNext: "slider-img-next",
+            centSlide: "",
         }
         this.nextSlide = this.nextSlide.bind(this);
     }
@@ -20,10 +21,29 @@ class Slider extends Component  {
     nextSlide = () => {
 
        let current = (this.state.currentSlide+1)%this.state.slide.length;
-       const prev = "slider-img-prev";
-       const next = "slider-img-next";
+       let centr = "";
+       let nextS = "";
+       let prevS = "";
+
+       if(this.state.centSlide === ""){
+            centr = "slider-img-prev";
+       }
+       if(this.state.slideNext === "slider-img-next"){
+            nextS = "";
+       }
+       if(this.state.slidePrev === "slider-img-prev"){
+            prevS = "slider-img-next";
+       }
+       if(current === this.state.slide.length - 1){
+            current = 0
+       }
        
-       this.setState({currentSlide: current})
+       this.setState({
+           currentSlide: current,
+           slidePrev: prevS,
+           slideNext: nextS,
+           centSlide: centr,
+        })
     }
 
     componentDidMount = () =>{
@@ -33,13 +53,13 @@ class Slider extends Component  {
 
     render(){
         
-        const {slide,nextSlide,currentSlide} = this.state;
+        const {slide, slidePrev, slideNext ,currentSlide, centSlide} = this.state;
         
         return(
             <div className="slider">
-              <img className="" src={slide[currentSlide].src}></img>
-              <img className="slider-img-next" src={slide[currentSlide].src}></img>
-              <img className="slider-img-prev" src={slide[currentSlide].src}></img>
+              <img className={centSlide} src={slide[currentSlide].src}></img>
+              <img className={slideNext} src={slide[currentSlide].src}></img>
+              <img className={slidePrev} src={slide[currentSlide].src}></img>
             </div>
         )
     }

@@ -11,6 +11,7 @@ class Slider extends Component  {
         this.state = {
             slide: photo,
             currentSlide: 0,
+            lastSlide: 1,
             slidePrev: "slider-img-prev",
             slideNext: "slider-img-next",
             centSlide: "",
@@ -21,18 +22,24 @@ class Slider extends Component  {
     nextSlide = () => {
 
        let current = (this.state.currentSlide+1)%this.state.slide.length;
-       let centr = "";
+       let centrS = "";
        let nextS = "";
        let prevS = "";
 
        if(this.state.centSlide === ""){
-            centr = "slider-img-prev";
-       }
-       if(this.state.slideNext === "slider-img-next"){
+            centrS = "slider-img-prev";
             nextS = "";
+            prevS = "speed";
        }
-       if(this.state.slidePrev === "slider-img-prev"){
-            prevS = "slider-img-next";
+       if(this.state.centSlide === "slider-img-prev"){
+            centrS = "speed";
+            nextS = "slider-img-prev";
+            prevS = "";
+       }
+       if(this.state.centSlide === "speed"){
+            centrS = "";
+            nextS = "speed";
+            prevS = "slider-img-prev";
        }
        if(current === this.state.slide.length - 1){
             current = 0
@@ -42,18 +49,18 @@ class Slider extends Component  {
            currentSlide: current,
            slidePrev: prevS,
            slideNext: nextS,
-           centSlide: centr,
+           centSlide: centrS,
         })
     }
 
     componentDidMount = () =>{
         console.log(2313)
-        let interval = setInterval(this.nextSlide, 3000);
+        // let interval = setInterval(this.nextSlide, 3000);
     }
 
     render(){
         
-        const {slide, slidePrev, slideNext ,currentSlide, centSlide} = this.state;
+        const {slide, slidePrev, slideNext ,currentSlide, centSlide, lastSlide} = this.state;
         
         return(
             <div className="slider">

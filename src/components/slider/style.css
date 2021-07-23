@@ -14,7 +14,7 @@
   position: absolute;
   left: 0;
   top: -50%;
-  transition: all 0.2s;
+  transition: all 0.9s;
   transform: translateX(0%);
 }
 
@@ -23,6 +23,11 @@
 }
 
 .slider img.slider-img-next {
+  transform: translateX(100%);
+}
+
+.slider img.speed{
+  transition: unset;
   transform: translateX(100%);
 }
 

@@ -16,16 +16,22 @@ class Slider extends Component  {
             slidePrev: "slider-img-prev",
             slideNext: "slider-img-next",
             centSlide: "",
+            counter: 0,
         }
         this.nextSlide = this.nextSlide.bind(this);
         this.nextImage = this.nextImage.bind(this);
+        this.stopImage = this.stopImage.bind(this);
+    }
+
+    stopImage = () => {
+        console.log(this.state.currentSlide - 1);
     }
 
     nextImage = () => {
-
+        
         let current = (this.state.currentSlide + 1)%this.state.slide.length;
 
-        if(current >= this.state.slide.length - 1){
+        if(current > this.state.slide.length - 1){
             current = 0;
         }
 
@@ -35,7 +41,12 @@ class Slider extends Component  {
     }
 
     nextSlide = () => {
-       
+
+        let counter = this.state.counter;
+        if(counter > 3){
+            counter = 0;
+        }
+      
        let centrS = "";
        let nextS = "";
        let prevS = "";
@@ -44,24 +55,30 @@ class Slider extends Component  {
             centrS = "slider-img-prev";
             nextS = "";
             prevS = "speed";
+            // Картинка не меняется
+            this.stopImage()
        }
 
        if(this.state.centSlide === "slider-img-prev"){
             centrS = "speed";
             nextS = "slider-img-prev";
             prevS = "";
+             // Картинка не меняется
+             this.stopImage()
        }
 
        if(this.state.centSlide === "speed"){
             centrS = "";
             nextS = "speed";
             prevS = "slider-img-prev";
+             // Картинка  меняется
        }
 
        this.setState({
            slidePrev: prevS,
            slideNext: nextS,
            centSlide: centrS,
+           counter: counter += 1,
         })
 
         this.nextImage();

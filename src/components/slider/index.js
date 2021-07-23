@@ -11,7 +11,6 @@ class Slider extends Component  {
         this.state = {
             slide: photo,
             currentSlide: 0,
-            lastSlide: 1,
             slidePrev: "slider-img-prev",
             slideNext: "slider-img-next",
             centSlide: "",
@@ -60,7 +59,7 @@ class Slider extends Component  {
 
     render(){
         
-        const {slide, slidePrev, slideNext ,currentSlide, centSlide, lastSlide} = this.state;
+        const {slide, slidePrev, slideNext ,currentSlide, centSlide} = this.state;
         
         return(
             <div className="slider">

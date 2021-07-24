@@ -15,9 +15,43 @@ class Slider extends Component  {
             slideNext: "slider-img-next",
             centSlide: "",
             counter: 0,
+            test: 0,
+            test1: 0,
+            test2: 0,
         }
         this.nextSlide = this.nextSlide.bind(this);
         this.nextImage = this.nextImage.bind(this);
+        this.test = this.test.bind(this);
+    }
+
+    test = () => {
+        
+        let test1 = this.state.test1;
+        let test2 = this.state.test2;
+        let test = this.state.currentSlide;
+        
+        test = test2;
+
+        if(this.state.test2 >= this.state.slide.length -1){
+            test1 = 0;
+        }else{
+            test1 = this.state.test2 + 1;
+        }
+        if(this.state.test2 >= this.state.slide.length -2){
+            test2 = 0;
+        }else{
+            test2 = this.state.test2 + 2;
+        }
+        // let test1 = this.state.test2 + 1;
+        // let test2 = this.state.test2 + 2;
+        console.log(test)
+
+        this.setState({
+            test: test,
+            test1: test1,
+            test2: test2,
+        })
+
     }
 
     nextImage = () => {
@@ -36,11 +70,16 @@ class Slider extends Component  {
     nextSlide = () => {
 
         let counter = this.state.counter;
-        console.log(this.state.counter)
+        // console.log(this.state.counter)
         if(counter >= 2){
             counter = 0;
-            console.log('smena kartinki kotoraya seichas poyavitsa');
-            // this.nextImage();
+            // console.log('smena kartinki kotoraya seichas poyavitsa');
+            let length = this.state.slide.length - 1;
+            
+            // console.log(length)
+            console.log( this.state);
+            this.test()
+            this.nextImage();
         }else{
             counter++
         }
@@ -85,13 +124,13 @@ class Slider extends Component  {
 
     render(){
         
-        const {slide, slidePrev, slideNext ,currentSlide, centSlide,currentNext,currentPrev} = this.state;
+        const {slide, slidePrev, slideNext ,currentSlide, centSlide,test1,test2,test} = this.state;
         
         return(
             <div className="slider">
-              <img className={centSlide} src={slide[currentSlide].src}></img>
-              <img className={slideNext} src={slide[currentSlide + 1].src}></img>
-              <img className={slidePrev} src={slide[currentSlide + 2].src}></img>
+              <img className={centSlide} src={slide[test].src}></img>
+              <img className={slideNext} src={slide[test1 ].src}></img>
+              <img className={slidePrev} src={slide[test2 ].src}></img>
             </div>
         )
     }

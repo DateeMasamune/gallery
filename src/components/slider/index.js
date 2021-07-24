@@ -11,8 +11,6 @@ class Slider extends Component  {
         this.state = {
             slide: photo,
             currentSlide: 0,
-            currentNext: 0,
-            currentPrev: 0,
             slidePrev: "slider-img-prev",
             slideNext: "slider-img-next",
             centSlide: "",
@@ -20,11 +18,6 @@ class Slider extends Component  {
         }
         this.nextSlide = this.nextSlide.bind(this);
         this.nextImage = this.nextImage.bind(this);
-        this.stopImage = this.stopImage.bind(this);
-    }
-
-    stopImage = () => {
-        console.log(this.state.currentSlide - 1);
     }
 
     nextImage = () => {
@@ -43,8 +36,13 @@ class Slider extends Component  {
     nextSlide = () => {
 
         let counter = this.state.counter;
-        if(counter > 3){
+        console.log(this.state.counter)
+        if(counter >= 2){
             counter = 0;
+            console.log('smena kartinki kotoraya seichas poyavitsa');
+            // this.nextImage();
+        }else{
+            counter++
         }
       
        let centrS = "";
@@ -55,38 +53,34 @@ class Slider extends Component  {
             centrS = "slider-img-prev";
             nextS = "";
             prevS = "speed";
-            // Картинка не меняется
-            this.stopImage()
        }
 
        if(this.state.centSlide === "slider-img-prev"){
             centrS = "speed";
             nextS = "slider-img-prev";
             prevS = "";
-             // Картинка не меняется
-             this.stopImage()
        }
 
        if(this.state.centSlide === "speed"){
             centrS = "";
             nextS = "speed";
-            prevS = "slider-img-prev";
-             // Картинка  меняется
+            prevS = "slider-img-prev"; 
        }
 
        this.setState({
            slidePrev: prevS,
            slideNext: nextS,
            centSlide: centrS,
-           counter: counter += 1,
+           counter: counter,
         })
 
-        this.nextImage();
+        
     }
 
     componentDidMount = () =>{
-        console.log(2313)
+        
         let interval = setInterval(this.nextSlide, 3000);
+        
     }
 
     render(){
@@ -96,8 +90,8 @@ class Slider extends Component  {
         return(
             <div className="slider">
               <img className={centSlide} src={slide[currentSlide].src}></img>
-              <img className={slideNext} src={slide[currentSlide].src}></img>
-              <img className={slidePrev} src={slide[currentSlide].src}></img>
+              <img className={slideNext} src={slide[currentSlide + 1].src}></img>
+              <img className={slidePrev} src={slide[currentSlide + 2].src}></img>
             </div>
         )
     }

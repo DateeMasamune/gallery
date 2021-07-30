@@ -16,73 +16,52 @@ class Slider extends Component  {
             centSlide: "",
             counter: 0,
             test: 0,
-            test1: 0,
-            test2: 0,
+            test1: 1,
+            test2: 2,
+            A: 0,
+            B: 1,
+            C: 2,
         }
         this.nextSlide = this.nextSlide.bind(this);
-        this.nextImage = this.nextImage.bind(this);
-        this.test = this.test.bind(this);
+        this.nextPicture = this.nextPicture.bind(this);
     }
 
-    test = () => {
-        
-        let test1 = this.state.test1;
-        let test2 = this.state.test2;
-        let test = this.state.currentSlide;
-        
-        test = test2;
+    nextPicture = () => {
+        let a = this.state.A
+        let b = this.state.B
+        let c = this.state.C
 
-        if(this.state.test2 >= this.state.slide.length -1){
-            test1 = 0;
-        }else{
-            test1 = this.state.test2 + 1;
-        }
-        if(this.state.test2 >= this.state.slide.length -2){
-            test2 = 0;
-        }else{
-            test2 = this.state.test2 + 2;
-        }
-        // let test1 = this.state.test2 + 1;
-        // let test2 = this.state.test2 + 2;
-        console.log(test)
+        a = c + 1;
+        b = c + 2;
+        c = c;
 
         this.setState({
-            test: test,
-            test1: test1,
-            test2: test2,
-        })
-
-    }
-
-    nextImage = () => {
-        
-        let current = (this.state.currentSlide + 1)%this.state.slide.length;
-
-        if(current > this.state.slide.length - 1){
-            current = 0;
-        }
-
-        this.setState({
-            currentSlide: current,
+            A: a,
+            B: b,
+            C: c,
         })
     }
 
     nextSlide = () => {
 
         let counter = this.state.counter;
-        // console.log(this.state.counter)
+        console.log(this.state.counter)
+        if(counter === 2){
+            
+            this.nextPicture()
+        }
+       
         if(counter >= 2){
             counter = 0;
-            // console.log('smena kartinki kotoraya seichas poyavitsa');
-            let length = this.state.slide.length - 1;
-            
-            // console.log(length)
-            console.log( this.state);
-            this.test()
-            this.nextImage();
+        
+            // this.test()
+            // this.nextImage();
         }else{
+            
             counter++
         }
+
+       
       
        let centrS = "";
        let nextS = "";
@@ -106,13 +85,14 @@ class Slider extends Component  {
             prevS = "slider-img-prev"; 
        }
 
+
        this.setState({
            slidePrev: prevS,
            slideNext: nextS,
            centSlide: centrS,
            counter: counter,
         })
-
+       
         
     }
 
@@ -124,13 +104,13 @@ class Slider extends Component  {
 
     render(){
         
-        const {slide, slidePrev, slideNext ,currentSlide, centSlide,test1,test2,test} = this.state;
+        const {slide, slidePrev, slideNext ,currentSlide, centSlide,test1,test2,test,A,B,C} = this.state;
         
         return(
             <div className="slider">
-              <img className={centSlide} src={slide[test].src}></img>
-              <img className={slideNext} src={slide[test1 ].src}></img>
-              <img className={slidePrev} src={slide[test2 ].src}></img>
+              <img className={centSlide} src={slide[A].src}></img>
+              <img className={slideNext} src={slide[B].src}></img>
+              <img className={slidePrev} src={slide[C].src}></img>
             </div>
         )
     }
